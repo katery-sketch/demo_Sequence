@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Послідовність: етапи бюджетування продажів — Embed</title>
+<style>
+  body{margin:0;padding:0;display:flex;justify-content:center;min-height:100vh;background:#f5f5f5}
+  .ew{width:100%;max-width:1024px;margin:2rem auto}
+  .ew iframe{width:100%;aspect-ratio:3/2;border:none;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.08);display:block}
+  @media(max-width:768px){.ew{margin:0}.ew iframe{border-radius:0;aspect-ratio:auto;height:100vh}}
+</style>
+</head>
+<body>
+<div class="ew">
+  <iframe id="interactiveExercise" title="Послідовність: етапи бюджетування продажів" srcdoc="<!DOCTYPE html>
+<html lang=&quot;uk&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>Послідовність: етапи бюджетування продажів</title>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand-primary: #1ACEC4;
+  --brand-secondary: #1699B4;
+  --brand-gradient: linear-gradient(135deg, #1ACEC4, #1699B4);
+  --brand-black: #000000;
+  --brand-white: #FFFFFF;
+  --brand-gray-light: #F5F5F5;
+  --brand-gray-mid: #E0E0E0;
+  --brand-gray-dark: #9E9E9E;
+  --feedback-correct: #E8F9F7;
+  --feedback-correct-border: #1ACEC4;
+  --feedback-wrong: #FFF0F0;
+  --feedback-wrong-border: #E53935;
+  --radius-card: 14px;
+  --radius-btn: 8px;
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--brand-black);
+  background: var(--brand-white);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- Top bar --- */
+.top-bar {
+  position: relative;
+  z-index: 2;
+  padding: 20px 32px 12px;
+  flex-shrink: 0;
+}
+.top-bar h1 {
+  font-weight: 600;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.top-bar .subtitle {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--brand-gray-dark);
+  margin-top: 2px;
+}
+
+/* --- Content --- */
+.content-area {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 32px;
+  overflow-y: auto;
+}
+.slide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+  margin: auto;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.q-card {
+  background: var(--brand-white);
+  border-radius: var(--radius-card);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 22px 26px;
+  border: 2px solid transparent;
+}
+.q-label {
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-gray-dark);
+  margin-bottom: 6px;
+}
+.q-situation {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+/* --- Sequence list --- */
+.seq-list { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+.seq-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 14px;
+  background: var(--brand-white);
+  border: 2px solid var(--brand-gray-mid);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  cursor: grab;
+  transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.seq-item:hover { border-color: var(--brand-primary); }
+.seq-item.dragging { opacity: 0.5; }
+.seq-item.drag-over { border-color: var(--brand-primary); background: rgba(26,206,196,0.06); }
+.seq-item.locked { cursor: default; }
+.seq-item.correct { border-color: var(--feedback-correct-border); background: var(--feedback-correct); }
+.seq-item.incorrect { border-color: var(--feedback-wrong-border); background: var(--feedback-wrong); }
+
+.seq-num {
+  width: 26px; height: 26px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: var(--brand-white);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.seq-text { flex: 1; }
+.seq-handle {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 3px;
+  color: var(--brand-gray-dark);
+  font-size: 0.9rem;
+  user-select: none;
+}
+.seq-ctrls { flex-shrink: 0; display: flex; flex-direction: column; gap: 3px; }
+.seq-ctrls button {
+  width: 26px; height: 20px;
+  border: none;
+  border-radius: 5px;
+  background: var(--brand-gray-light);
+  color: var(--brand-secondary);
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1;
+  transition: background var(--transition-fast);
+}
+.seq-ctrls button:hover:not(:disabled) { background: var(--brand-gray-mid); }
+.seq-ctrls button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* --- Feedback --- */
+.feedback-box {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border-left: 4px solid;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  animation: slideDown 0.3s ease;
+}
+.feedback-box.correct { background: var(--feedback-correct); border-color: var(--feedback-correct-border); }
+.feedback-box.wrong   { background: var(--feedback-wrong);   border-color: var(--feedback-wrong-border); }
+.feedback-box strong { display: block; margin-bottom: 4px; font-size: 0.85rem; }
+.feedback-box .fb-order { margin: 6px 0 8px; padding-left: 20px; }
+.feedback-box .fb-order li { margin-bottom: 2px; }
+@keyframes slideDown { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Nav bar --- */
+.nav-bar {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 14px 32px 20px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 26px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  border: none;
+}
+.nav-btn:hover:not(:disabled) { transform: translateY(-1px); }
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nav-btn.check, .nav-btn.next {
+  background: var(--brand-gradient);
+  color: var(--brand-white);
+}
+.nav-btn.retry {
+  background: transparent;
+  color: var(--brand-black);
+  border: 2px solid var(--brand-gray-mid);
+}
+.nav-btn.retry:hover { border-color: var(--brand-primary); }
+
+@media (max-height: 640px) {
+  .top-bar { padding: 12px 24px 6px; }
+  .top-bar h1 { font-size: 1.1rem; }
+  .q-card { padding: 16px 18px; }
+  .q-situation { font-size: 0.82rem; margin-bottom: 10px; }
+  .seq-item { padding: 8px 10px; font-size: 0.8rem; }
+  .feedback-box { padding: 9px 12px; font-size: 0.77rem; margin-top: 10px; }
+  .nav-bar { padding: 8px 24px 12px; }
+}
+</style>
+</head>
+<body>
+<div class=&quot;app&quot;>
+  <svg class=&quot;bg-decoration&quot; viewBox=&quot;0 0 1440 900&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; preserveAspectRatio=&quot;xMidYMid slice&quot;>
+    <circle cx=&quot;150&quot; cy=&quot;800&quot; r=&quot;260&quot; fill=&quot;#E0E0E0&quot; opacity=&quot;0.3&quot; />
+    <defs>
+      <linearGradient id=&quot;arcGrad&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;>
+        <stop offset=&quot;0%&quot; stop-color=&quot;#1ACEC4&quot; />
+        <stop offset=&quot;100%&quot; stop-color=&quot;#1699B4&quot; />
+      </linearGradient>
+    </defs>
+    <path d=&quot;M 50 510 A 280 280 0 1 0 430 680&quot; fill=&quot;none&quot; stroke=&quot;url(#arcGrad)&quot; stroke-width=&quot;20&quot; stroke-linecap=&quot;round&quot; />
+    <circle cx=&quot;290&quot; cy=&quot;420&quot; r=&quot;16&quot; fill=&quot;#E0E0E0&quot; opacity=&quot;0.55&quot; />
+    <polygon points=&quot;820,180 970,265 820,350&quot; fill=&quot;#E0E0E0&quot; opacity=&quot;0.2&quot; />
+    <circle cx=&quot;920&quot; cy=&quot;540&quot; r=&quot;14&quot; fill=&quot;#1ACEC4&quot; opacity=&quot;0.6&quot; />
+    <circle cx=&quot;1200&quot; cy=&quot;170&quot; r=&quot;9&quot; fill=&quot;#D0D0D0&quot; opacity=&quot;0.45&quot; />
+  </svg>
+
+  <div class=&quot;top-bar&quot;>
+    <h1>Послідовність кроків</h1>
+    <div class=&quot;subtitle&quot;>Етапи бюджетування продажів</div>
+  </div>
+
+  <div class=&quot;content-area&quot;>
+    <div class=&quot;slide&quot;>
+      <div class=&quot;q-card&quot;>
+        <div class=&quot;q-label&quot;>Завдання</div>
+        <div class=&quot;q-situation&quot;>Розставте етапи бюджетування продажів у правильному порядку — від першого до останнього. Перетягніть картки або скористайтеся стрілками.</div>
+        <ul class=&quot;seq-list&quot; id=&quot;seqList&quot;></ul>
+        <div id=&quot;feedbackSlot&quot;></div>
+      </div>
+    </div>
+  </div>
+
+  <div class=&quot;nav-bar&quot;>
+    <button class=&quot;nav-btn retry&quot; id=&quot;retryBtn&quot; style=&quot;display:none&quot;>↺ Спробувати ще раз</button>
+    <button class=&quot;nav-btn check&quot; id=&quot;checkBtn&quot;>Перевірити</button>
+  </div>
+</div>
+
+<script>
+// data-order = position in the correct sequence (1..4)
+const STEPS = [
+  { order: 1, text: &quot;Зібрати історичні дані про продажі&quot; },
+  { order: 2, text: &quot;Спрогнозувати попит на період&quot; },
+  { order: 3, text: &quot;Узгодити цільові показники з відділами&quot; },
+  { order: 4, text: &quot;Затвердити фінальний бюджет&quot; }
+];
+
+// initial (shuffled) presentation order
+const INITIAL = [4, 1, 2, 3];
+
+const list = document.getElementById('seqList');
+const checkBtn = document.getElementById('checkBtn');
+const retryBtn = document.getElementById('retryBtn');
+const feedbackSlot = document.getElementById('feedbackSlot');
+let locked = false;
+
+function byOrder(o) { return STEPS.find(s => s.order === o); }
+
+function render(sequence) {
+  list.innerHTML = '';
+  sequence.forEach((order, i) => {
+    const step = byOrder(order);
+    const li = document.createElement('li');
+    li.className = 'seq-item';
+    li.draggable = true;
+    li.dataset.order = order;
+    li.innerHTML = `
+      <span class=&quot;seq-num&quot;>${i + 1}</span>
+      <span class=&quot;seq-text&quot;>${step.text}</span>
+      <span class=&quot;seq-ctrls&quot;>
+        <button class=&quot;up&quot; ${i === 0 ? 'disabled' : ''} aria-label=&quot;Вгору&quot;>▲</button>
+        <button class=&quot;down&quot; ${i === sequence.length - 1 ? 'disabled' : ''} aria-label=&quot;Вниз&quot;>▼</button>
+      </span>
+      <span class=&quot;seq-handle&quot;>⋮⋮</span>`;
+    list.appendChild(li);
+  });
+  bindEvents();
+}
+
+function currentSequence() {
+  return [...list.querySelectorAll('.seq-item')].map(li => Number(li.dataset.order));
+}
+
+function move(li, dir) {
+  if (locked) return;
+  if (dir === 'up' &amp;&amp; li.previousElementSibling) {
+    list.insertBefore(li, li.previousElementSibling);
+  } else if (dir === 'down' &amp;&amp; li.nextElementSibling) {
+    list.insertBefore(li.nextElementSibling, li);
+  }
+  render(currentSequence());
+}
+
+let dragEl = null;
+function bindEvents() {
+  list.querySelectorAll('.seq-item').forEach(li => {
+    li.querySelector('.up').onclick = () => move(li, 'up');
+    li.querySelector('.down').onclick = () => move(li, 'down');
+
+    li.addEventListener('dragstart', e => {
+      if (locked) return e.preventDefault();
+      dragEl = li; li.classList.add('dragging');
+    });
+    li.addEventListener('dragend', () => {
+      li.classList.remove('dragging');
+      list.querySelectorAll('.seq-item').forEach(x => x.classList.remove('drag-over'));
+      render(currentSequence());
+    });
+    li.addEventListener('dragover', e => {
+      e.preventDefault();
+      if (!dragEl || dragEl === li) return;
+      const rect = li.getBoundingClientRect();
+      const after = (e.clientY - rect.top) > rect.height / 2;
+      list.insertBefore(dragEl, after ? li.nextElementSibling : li);
+    });
+  });
+}
+
+function check() {
+  const seq = currentSequence();
+  locked = true;
+  const items = [...list.querySelectorAll('.seq-item')];
+  let allCorrect = true;
+  items.forEach((li, i) => {
+    li.classList.add('locked');
+    li.draggable = false;
+    li.querySelector('.seq-ctrls').style.display = 'none';
+    li.querySelector('.seq-handle').style.display = 'none';
+    if (seq[i] === i + 1) {
+      li.classList.add('correct');
+    } else {
+      li.classList.add('incorrect');
+      allCorrect = false;
+    }
+  });
+
+  const orderList = '<ol class=&quot;fb-order&quot;>' +
+    STEPS.map(s => `<li>${s.text}</li>`).join('') + '</ol>';
+  const logic = 'Спочатку спираємося на факти, потім будуємо прогноз, узгоджуємо його з командами і лише тоді фіксуємо бюджет. Затвердження — завжди останній крок.';
+
+  const fb = document.createElement('div');
+  if (allCorrect) {
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = '<strong>Правильно!</strong>Правильний порядок:' + orderList + logic;
+  } else {
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML = '<strong>Не зовсім.</strong>Правильний порядок:' + orderList + logic;
+  }
+  feedbackSlot.appendChild(fb);
+  checkBtn.style.display = 'none';
+  retryBtn.style.display = 'inline-flex';
+}
+
+function reset() {
+  locked = false;
+  feedbackSlot.innerHTML = '';
+  retryBtn.style.display = 'none';
+  checkBtn.style.display = 'inline-flex';
+  render(INITIAL.slice());
+}
+
+checkBtn.onclick = check;
+retryBtn.onclick = reset;
+render(INITIAL.slice());
+</script>
+</body>
+</html>
+                                                           " allowfullscreen></iframe>
+</div>
+</body>
+</html>
